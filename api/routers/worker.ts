@@ -9,14 +9,14 @@ import { SignJWT, jwtVerify } from "jose";
 const secret = new TextEncoder().encode("pendo-stylish-secret-key-2026");
 
 export const workerRouter = createRouter({
-  list: publicQuery.query(async () => {
-    return getDb().select().from(workers).where(eq(workers.isActive, true));
+  list: publicQuery.query(async ({ ctx }) => {
+    return getDb(ctx.db).select().from(workers).where(eq(workers.isActive, true));
   }),
 
   getById: publicQuery
     .input(z.object({ id: z.number() }))
-    .query(async ({ input }) => {
-      const [worker] = await getDb()
+    .query(async ({ input, ctx }) => {
+      const [worker] = await getDb(ctx.db)
         .select()
         .from(workers)
         .where(eq(workers.id, input.id))
@@ -33,9 +33,9 @@ export const workerRouter = createRouter({
         pin: z.string().length(4),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       const hashedPin = await bcrypt.hash(input.pin, 10);
-      const result = await getDb()
+      const result = await getDb(ctx.db)
         .insert(workers)
         .values({ ...input, pin: hashedPin })
         .returning();
@@ -52,9 +52,9 @@ export const workerRouter = createRouter({
         isActive: z.boolean().optional(),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       const { id, ...data } = input;
-      const result = await getDb()
+      const result = await getDb(ctx.db)
         .update(workers)
         .set(data)
         .where(eq(workers.id, id))
@@ -64,8 +64,8 @@ export const workerRouter = createRouter({
 
   delete: publicQuery
     .input(z.object({ id: z.number() }))
-    .mutation(async ({ input }) => {
-      await getDb()
+    .mutation(async ({ input, ctx }) => {
+      await getDb(ctx.db)
         .update(workers)
         .set({ isActive: false })
         .where(eq(workers.id, input.id));
@@ -79,8 +79,8 @@ export const workerRouter = createRouter({
         pin: z.string().length(4),
       })
     )
-    .mutation(async ({ input }) => {
-      const [worker] = await getDb()
+    .mutation(async ({ input, ctx }) => {
+      const [worker] = await getDb(ctx.db)
         .select()
         .from(workers)
         .where(eq(workers.name, input.name))
@@ -100,16 +100,21 @@ export const workerRouter = createRouter({
         .setExpirationTime("8h")
         .sign(secret);
 
-      return { token, worker: { id: worker.id, name: worker.name, role: worker.role } };
+      return {
+        token,
+        worker: { id: worker.id, name: worker.name, role: worker.role },
+      };
     }),
 
   verifyToken: publicQuery
     .input(z.object({ token: z.string() }))
-    .query(async ({ input }) => {
+    .query(async ({ input, ctx }) => {
       try {
-        const { payload } = await jwtVerify(input.token, secret, { clockTolerance: 60 });
+        const { payload } = await jwtVerify(input.token, secret, {
+          clockTolerance: 60,
+        });
         const workerId = payload.workerId as number;
-        const [worker] = await getDb()
+        const [worker] = await getDb(ctx.db)
           .select()
           .from(workers)
           .where(eq(workers.id, workerId))
