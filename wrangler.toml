@@ -1,12 +1,12 @@
 name = "pendo-stylish"
 main = "api/cloudflare-worker.ts"
 compatibility_date = "2026-05-19"
+compatibility_flags = ["nodejs_compat"]
 
 # D1 Database binding
 [[d1_databases]]
 binding = "DB"
 database_name = "pendo-stylish-db"
-# Replace with your actual database ID from Cloudflare dashboard
 database_id = "15660aff-869f-493c-b007-dd3ed7fd1742"
 
 # Environment variables
