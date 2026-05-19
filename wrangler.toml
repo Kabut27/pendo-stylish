@@ -1,0 +1,22 @@
+name = "pendo-stylish"
+main = "api/cloudflare-worker.ts"
+compatibility_date = "2026-05-19"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "pendo-stylish-db"
+# Replace with your actual database ID from Cloudflare dashboard
+database_id = "your-database-id-here"
+
+# Environment variables
+[vars]
+JWT_SECRET = "pendo-stylish-secret-key-2026"
+
+# Build configuration
+[build]
+command = "npm run build"
+
+# Assets for Pages (if using Pages)
+[site]
+bucket = "./dist"

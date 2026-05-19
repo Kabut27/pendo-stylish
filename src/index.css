@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 20% 97%;
+    --foreground: 30 10% 15%;
+    --card: 30 25% 98%;
+    --card-foreground: 30 10% 15%;
+    --popover: 30 25% 98%;
+    --popover-foreground: 30 10% 15%;
+    --primary: 351 60% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 15% 92%;
+    --secondary-foreground: 30 10% 25%;
+    --muted: 30 12% 92%;
+    --muted-foreground: 30 8% 45%;
+    --accent: 351 50% 92%;
+    --accent-foreground: 351 60% 40%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 351 60% 55%;
+    --radius: 0.625rem;
+    --sidebar-background: 30 20% 97%;
+    --sidebar-foreground: 30 10% 25%;
+    --sidebar-primary: 351 60% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 351 50% 95%;
+    --sidebar-accent-foreground: 351 60% 40%;
+    --sidebar-border: 30 15% 90%;
+    --sidebar-ring: 351 60% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .rose-gold-gradient {
+    background: linear-gradient(135deg, #d4788c 0%, #c9a87c 50%, #d4788c 100%);
+  }
+  .rose-gold-text {
+    background: linear-gradient(135deg, #c4536a 0%, #b8956a 50%, #c4536a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 120, 140, 0.15);
+  }
+  .btn-rose {
+    @apply bg-gradient-to-r from-[#c4536a] to-[#d4788c] text-white font-semibold shadow-lg shadow-rose-200/50 transition-all duration-200;
+  }
+  .btn-rose:hover {
+    @apply shadow-xl shadow-rose-300/60 scale-[1.02];
+  }
+  .btn-rose:active {
+    @apply scale-[0.98];
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-rose-100/50 hover:-translate-y-1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f5f0eb;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4a574;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c4536a;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
