@@ -7,7 +7,7 @@ compatibility_date = "2026-05-19"
 binding = "DB"
 database_name = "pendo-stylish-db"
 # Replace with your actual database ID from Cloudflare dashboard
-database_id = "your-database-id-here"
+database_id = "15660aff-869f-493c-b007-dd3ed7fd1742"
 
 # Environment variables
 [vars]
