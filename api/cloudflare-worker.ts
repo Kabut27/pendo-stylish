@@ -1,6 +1,3 @@
-// Cloudflare Worker entry point for D1
-// This replaces boot.ts when deploying to Cloudflare Workers
-
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { appRouter } from "./router";
@@ -23,7 +20,6 @@ app.use("*", cors({
   allowHeaders: ["Content-Type", "Authorization"],
 }));
 
-// Serve static files from Cloudflare Pages
 app.use("/assets/*", async (c) => {
   return c.env.ASSETS ? c.env.ASSETS.fetch(c.req.raw) : c.text("Not found", 404);
 });
@@ -33,11 +29,10 @@ app.use("/api/trpc/*", async (c) => {
     endpoint: "/api/trpc",
     req: c.req.raw,
     router: appRouter,
-    createContext: (opts) => createContext(opts),
+    createContext: (opts) => createContext({ ...opts, env: c.env }),
   });
 });
 
-// Serve SPA for all other routes
 app.get("*", async (c) => {
   if (c.env.ASSETS) {
     return c.env.ASSETS.fetch(c.req.raw);
