@@ -7,11 +7,15 @@ export default function LocationButtons({ latitude, longitude, address }) {
   const lat = latitude || "-7.7690";
   const lng = longitude || "35.6910";
 
-  // Bolt "universal link" - hufungua app ya Bolt ikiwa imewekwa ikiwa na eneo
-  // la kuelekea limejazwa tayari; kama app haipo, simu inapeleka kwenye ukurasa wa Bolt.
-  const boltUrl = `https://link.bolt.eu/ride?dropoff[latitude]=${lat}&dropoff[longitude]=${lng}${
-    address ? `&dropoff[description]=${encodeURIComponent(address)}` : ""
-  }`;
+  // NOTE: Bolt (tofauti na Uber) hai-publish hadharani URL rasmi ya
+  // "universal link" yenye dropoff[latitude]/dropoff[longitude]. Endpoint
+  // "link.bolt.eu/ride" iliyokuwepo hapo awali haikuwepo kabisa upande wa
+  // Bolt (ilirudisha 404 - ilikuwa link isiyo sahihi). Kwa usalama
+  // tunaelekeza kwenye ukurasa halisi wa Bolt Tanzania - unafanya kazi kila
+  // wakati (unamwomba mtumiaji apakue/afungue app), ijapokuwa haiwezi kujaza
+  // eneo la kuelekea kiotomatiki bila akaunti ya "Bolt for Business"
+  // (Ride Booker) yenye ufikiaji wa API.
+  const boltUrl = "https://bolt.eu/en-tz/rides/";
 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 
