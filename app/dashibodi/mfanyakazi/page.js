@@ -167,7 +167,7 @@ export default function StaffDashboardPage() {
       {loading ? (
         <p className="muted">Inapakia...</p>
       ) : (
-        <table>
+        <table className={`tbl-cards ${showStaffPicker ? "tbl-history-staff" : "tbl-history"}`}>
           <thead>
             <tr><th>Tarehe</th><th>Kitu</th>{showStaffPicker && <th>Aliyefanya</th>}<th>Mapato</th><th>Matumizi</th><th>Faida</th></tr>
           </thead>

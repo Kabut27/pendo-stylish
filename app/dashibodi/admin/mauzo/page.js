@@ -249,7 +249,7 @@ function AdminMauzoContent() {
         </form>
 
         {locks.length > 0 && (
-          <table style={{ marginTop: 10 }}>
+          <table className="tbl-cards tbl-locks" style={{ marginTop: 10 }}>
             <thead>
               <tr>
                 <th>Kipindi</th>
@@ -301,7 +301,7 @@ function AdminMauzoContent() {
         <>
           <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
           <div className="table-wrap">
-            <table>
+            <table className="tbl-cards tbl-sales-log">
               <thead>
                 <tr>
                   <th>Tarehe</th>

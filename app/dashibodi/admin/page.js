@@ -101,7 +101,7 @@ export default function AdminOverviewPage() {
             </p>
             <span className="scroll-hint">↔️ Sogeza kando kuona Mapato na Faida</span>
             <div className="table-wrap">
-              <table>
+              <table className="tbl-cards tbl-staff-summary">
                 <thead>
                   <tr>
                     <th>Mfanyakazi</th>

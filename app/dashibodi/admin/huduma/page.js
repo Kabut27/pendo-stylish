@@ -120,7 +120,7 @@ export default function AdminHudumaPage() {
         <p className="muted">Inapakia...</p>
       ) : (
         <div className="table-wrap">
-          <table>
+          <table className="tbl-cards tbl-services">
             <thead><tr><th>Jina</th><th>Bei</th><th>Hali</th><th></th></tr></thead>
             <tbody>
               {services.map((s) => (

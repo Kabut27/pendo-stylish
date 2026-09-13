@@ -193,7 +193,7 @@ export default function AdminBidhaaPage() {
         <>
           <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
           <div className="table-wrap">
-            <table>
+            <table className="tbl-cards tbl-products">
           <thead>
             <tr>
               <th>Picha</th>

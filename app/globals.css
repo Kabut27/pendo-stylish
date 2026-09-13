@@ -1117,3 +1117,303 @@ select:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===========================================================================
+   MUONEKANO MPYA WA "PREMIUM" — kwa mtindo wa tovuti za teknolojia za hali ya
+   juu (glass cards, glow za gradient, background zenye "mwanga" kama
+   deluxhost.net) lakini kwa rangi za chapa ya Pendo Stylish (zambarau+dhahabu).
+   Hakuna className/selector ya zamani iliyoondolewa - haya ni MAREKEBISHO
+   na NYONGEZA tu, ili kusiwe na error popote kwenye tovuti.
+   =========================================================================== */
+
+:root {
+  /* Rangi mpya za nyongeza (bado tunatumia --purple/--gold/n.k. za awali kila mahali) */
+  --violet: #7c3aed;
+  --violet-deep: #4c1d95;
+  --magenta: #c026d3;
+  --admin-bg-1: #150a24;
+  --admin-bg-2: #241142;
+  --admin-bg-3: #2f1256;
+  --admin-surface: rgba(255, 255, 255, 0.045);
+  --admin-surface-hover: rgba(255, 255, 255, 0.09);
+  --admin-border: rgba(255, 255, 255, 0.1);
+  --admin-text: #f3ecff;
+  --admin-text-muted: #bba9d9;
+  --success-onDark: #4ade80;
+  --danger-onDark: #f87171;
+  --glow-purple: 0 0 0 1px rgba(124, 58, 237, 0.35), 0 10px 34px rgba(124, 58, 237, 0.28);
+  --glow-gold: 0 0 0 1px rgba(212, 175, 55, 0.4), 0 10px 30px rgba(212, 175, 55, 0.22);
+}
+
+/* ---------- A. FRONT: mguso wa "tech premium" bila kubadili chapa ---------- */
+
+/* Mstari mwembamba wenye gradient chini ya header - kama tovuti za VPS/hosting */
+.site-header { border-bottom: none; box-shadow: 0 1px 0 0 rgba(91,31,138,0.08); position: sticky; }
+.site-header::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--violet), var(--gold));
+  background-size: 200% auto;
+  animation: shimmerLine 6s linear infinite;
+  opacity: 0.7;
+}
+@keyframes shimmerLine { to { background-position: -200% center; } }
+
+/* Hero na promo-hero: ongeza "grid pattern" nyororo ya kidijitali nyuma ya
+   maudhui (kama background ya deluxhost) juu ya orbs zilizopo tayari. */
+.hero::before,
+.promo-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero::before { opacity: 0.5; }
+.promo-hero { background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple) 45%, var(--violet) 75%, var(--magenta) 100%); }
+.promo-badge {
+  background: rgba(255,255,255,0.1);
+  box-shadow: var(--glow-gold);
+}
+
+/* Vitufe: glow ya kifahari kwenye hover, kama button za "Order now" za tovuti za hosting */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary:hover { box-shadow: var(--glow-purple); transform: translateY(-1px); }
+.btn-gold:hover { box-shadow: var(--glow-gold); transform: translateY(-1px); }
+.btn-dark-pill { box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+.btn-dark-pill:hover { box-shadow: 0 14px 36px rgba(212,175,55,0.35); }
+
+/* Kadi za bidhaa/kategoria: glow ya "glass" imara zaidi */
+.category-tile:hover, .category-item:hover {
+  box-shadow: var(--glow-gold);
+}
+.card:hover::after { box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.28), var(--glow-gold); }
+
+/* Sehemu ya "loyalty-card" na footer - mguso wa mwanga wa gradient */
+.loyalty-card { box-shadow: var(--glow-gold); }
+.site-footer { position: relative; }
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--violet), var(--magenta), var(--gold));
+}
+
+/* ---------- B. DASHIBODI/ADMIN: muonekano mpya wa "control panel" ya kifahari
+   (dark + glass + glow) - kama paneli za VPS/hosting za kisasa. Kila kitu
+   kimewekewa scope ndani ya .dash-shell / .dash-main ili tovuti ya mbele
+   (frontend) ibaki na muonekano wake wa awali. ---------- */
+
+.dash-shell {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(124,58,237,0.25), transparent 45%),
+    radial-gradient(circle at 100% 20%, rgba(212,175,55,0.14), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(192,38,211,0.12), transparent 45%),
+    linear-gradient(160deg, var(--admin-bg-1) 0%, var(--admin-bg-2) 55%, var(--admin-bg-3) 100%);
+  background-attachment: fixed;
+}
+.dash-main { color: var(--admin-text); }
+.dash-main h1, .dash-main h2, .dash-main h3, .dash-main h4 { color: #ffffff; font-family: "Playfair Display", serif; }
+.dash-main h2 { background: linear-gradient(135deg, #ffffff, var(--gold-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dash-main .muted, .dash-main p.muted, .dash-main .small.muted { color: var(--admin-text-muted); }
+.dash-main label { color: var(--gold-light); }
+.dash-main input, .dash-main textarea, .dash-main select { color: var(--text-dark); }
+.dash-main a { color: var(--gold-light); }
+.dash-main td a, .dash-main .card a { color: var(--gold-light) !important; }
+/* Marekebisho ya rangi zilizowekwa "inline" kwenye baadhi ya kurasa (mf.
+   ripoti/page.js) ili ziendelee kusomeka vizuri juu ya background nyeusi mpya. */
+.dash-main [style*="--success"] { color: var(--success-onDark) !important; }
+.dash-main [style*="--danger"] { color: var(--danger-onDark) !important; }
+
+/* Kadi ndani ya dashibodi (fomu, muhtasari, ripoti n.k.) - "glass card" */
+.dash-main .card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+}
+.dash-main .card:hover { transform: none; }
+.dash-main .card::after { display: none; }
+
+/* Stat cards - glass yenye "glow" ya icon */
+.dash-main .stat-card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-top: 3px solid var(--gold);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.dash-main .stat-card:hover { box-shadow: var(--glow-purple); }
+.dash-main .stat-card .stat-icon {
+  background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(212,175,55,0.28));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+.dash-main .stat-card .value { color: #ffffff; }
+.dash-main .stat-card .label { color: var(--admin-text-muted); }
+
+/* Loyalty/alert-style blocks ndani ya dash zibaki kama zilivyo (self-contained) */
+
+/* Sidebar: gradient ya kina zaidi + active state yenye "glow" ya dhahabu */
+.dash-sidebar {
+  background: linear-gradient(195deg, var(--admin-bg-1) 0%, var(--purple-deep) 60%, var(--violet-deep) 130%);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.dash-sidebar a.active {
+  background: linear-gradient(135deg, rgba(212,175,55,0.22), rgba(124,58,237,0.22));
+  box-shadow: inset 0 0 0 1px rgba(212,175,55,0.35);
+  color: var(--gold-light);
+  font-weight: 700;
+}
+.dash-sidebar a:hover { background: rgba(255,255,255,0.08); }
+.dash-sidebar-toggle { box-shadow: var(--glow-purple); }
+
+/* Jedwali za desktop ndani ya dashibodi - mwonekano wa "data panel" ya kisasa */
+.dash-main table { background: transparent; }
+.dash-main th {
+  background: linear-gradient(135deg, rgba(124,58,237,0.28), rgba(192,38,211,0.16));
+  color: var(--gold-light);
+  border-bottom: 1px solid var(--admin-border);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+}
+.dash-main td { color: var(--admin-text); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.dash-main tbody tr:hover { background: rgba(255,255,255,0.05); }
+.dash-main tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+.dash-main tbody tr:nth-child(even):hover { background: rgba(255,255,255,0.06); }
+.dash-main table th:first-child,
+.dash-main table td:first-child { background: #1c0f34 !important; box-shadow: 2px 0 8px rgba(0,0,0,0.35); }
+.dash-main table thead th:first-child { background: #2a1550 !important; }
+.scroll-hint { background: rgba(255,255,255,0.08); color: var(--gold-light); }
+
+/* ---------- C. DASHIBODI: majedwali kuwa "kadi" za kisasa kwenye simu ----------
+   Badala ya jedwali refu linaloweza kuhitaji ku-scroll kando kwenye simu,
+   kila safu (tr) sasa inaonekana kama kadi tofauti - jina la column
+   linaonekana kama "lebo" ndogo mbele ya thamani yake (bila kuhitaji
+   kubadilisha JSX - lebo zinatolewa hapa kwa CSS pekee kulingana na
+   mpangilio wa column za kila jedwali). Desktop/tablet (>640px) hazibadiliki -
+   zinaonekana kama jedwali la kawaida lililoboreshwa hapo juu. */
+@media (max-width: 640px) {
+  .dash-main table.tbl-cards { width: 100% !important; min-width: 0 !important; border-collapse: separate; border-spacing: 0 12px; }
+  .dash-main .tbl-cards thead { display: none; }
+  .dash-main .tbl-cards tbody tr {
+    display: flex;
+    flex-direction: column;
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-left: 3px solid var(--gold);
+    border-radius: 14px;
+    padding: 12px 14px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+  }
+  .dash-main .tbl-cards tbody tr:hover,
+  .dash-main .tbl-cards tbody tr:nth-child(even),
+  .dash-main .tbl-cards tbody tr:nth-child(even):hover { background: var(--admin-surface); }
+  .dash-main .tbl-cards td,
+  .dash-main .tbl-cards th {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: right;
+    gap: 12px;
+    padding: 7px 0 !important;
+    border-bottom: 1px dashed rgba(255,255,255,0.1) !important;
+    white-space: normal !important;
+    position: static !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .dash-main .tbl-cards td:last-child { border-bottom: none !important; }
+  .dash-main .tbl-cards td::before {
+    content: "";
+    font-weight: 700;
+    color: var(--gold-light);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-align: left;
+    flex-shrink: 0;
+  }
+  /* Safu zenye picha (avatar/thumbnail) - katikati, bila lebo */
+  .dash-main .tbl-cards td:has(img) { justify-content: center; padding-bottom: 10px !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; margin-bottom: 4px; }
+  .dash-main .tbl-cards td:has(img)::before { content: none; }
+  /* Safu za vitendo (vitufe kama Hariri/Futa/Fungua) - katikati chini ya kadi, bila lebo */
+  .dash-main .tbl-cards td:has(> button) { justify-content: center; flex-wrap: wrap; padding-top: 10px !important; }
+  .dash-main .tbl-cards td:has(> button)::before { content: none; }
+  /* Safu ya "hakuna data bado" (colSpan) - katikati, bila lebo */
+  .dash-main .tbl-cards td[colspan] { justify-content: center; text-align: center; }
+  .dash-main .tbl-cards td[colspan]::before { content: none; }
+
+  /* Lebo za kila column, kulingana na mpangilio wake katika kila jedwali */
+  .tbl-history td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-history td:nth-of-type(2)::before { content: "Kitu"; }
+  .tbl-history td:nth-of-type(3)::before { content: "Mapato"; }
+  .tbl-history td:nth-of-type(4)::before { content: "Matumizi"; }
+  .tbl-history td:nth-of-type(5)::before { content: "Faida"; }
+
+  .tbl-history-staff td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-history-staff td:nth-of-type(2)::before { content: "Kitu"; }
+  .tbl-history-staff td:nth-of-type(3)::before { content: "Aliyefanya"; }
+  .tbl-history-staff td:nth-of-type(4)::before { content: "Mapato"; }
+  .tbl-history-staff td:nth-of-type(5)::before { content: "Matumizi"; }
+  .tbl-history-staff td:nth-of-type(6)::before { content: "Faida"; }
+
+  .tbl-staff td:nth-of-type(2)::before { content: "Jina"; }
+  .tbl-staff td:nth-of-type(3)::before { content: "Aina"; }
+  .tbl-staff td:nth-of-type(4)::before { content: "Ujuzi"; }
+  .tbl-staff td:nth-of-type(5)::before { content: "Hali"; }
+  .tbl-staff td:has(img) img { border-radius: 50% !important; }
+
+  .tbl-products td:nth-of-type(2)::before { content: "Jina"; }
+  .tbl-products td:nth-of-type(3)::before { content: "Bei"; }
+  .tbl-products td:nth-of-type(4)::before { content: "Hali"; }
+
+  .tbl-locks td:nth-of-type(1)::before { content: "Kipindi"; }
+  .tbl-locks td:nth-of-type(2)::before { content: "Aina"; }
+  .tbl-locks td:nth-of-type(3)::before { content: "Alifunga"; }
+
+  .tbl-sales-log td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-sales-log td:nth-of-type(2)::before { content: "Aliyefanya"; }
+  .tbl-sales-log td:nth-of-type(3)::before { content: "Kitu"; }
+  .tbl-sales-log td:nth-of-type(4)::before { content: "Mapato"; }
+  .tbl-sales-log td:nth-of-type(5)::before { content: "Matumizi"; }
+  .tbl-sales-log td:nth-of-type(6)::before { content: "Faida"; }
+  .tbl-sales-log td:nth-of-type(7)::before { content: "Aliyeingiza"; }
+
+  .tbl-expenses td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-expenses td:nth-of-type(2)::before { content: "Aina"; }
+  .tbl-expenses td:nth-of-type(3)::before { content: "Maelezo"; }
+  .tbl-expenses td:nth-of-type(4)::before { content: "Kiasi"; }
+
+  .tbl-services td:nth-of-type(1)::before { content: "Jina"; }
+  .tbl-services td:nth-of-type(2)::before { content: "Bei"; }
+  .tbl-services td:nth-of-type(3)::before { content: "Hali"; }
+
+  .tbl-audit td:nth-of-type(1)::before { content: "Tarehe/Muda"; }
+  .tbl-audit td:nth-of-type(2)::before { content: "Mtumiaji"; }
+  .tbl-audit td:nth-of-type(3)::before { content: "Kitendo"; }
+  .tbl-audit td:nth-of-type(4)::before { content: "Kipengele"; }
+  .tbl-audit td:nth-of-type(5)::before { content: "IP"; }
+
+  .tbl-staff-summary td:nth-of-type(1)::before { content: "Mfanyakazi"; }
+  .tbl-staff-summary td:nth-of-type(2)::before { content: "Idadi"; }
+  .tbl-staff-summary td:nth-of-type(3)::before { content: "Mapato"; }
+  .tbl-staff-summary td:nth-of-type(4)::before { content: "Faida"; }
+
+  /* Jedwali fupi la "ledger" (mf. Ripoti P&L) - tayari lina column 2 tu
+     (maelezo + kiasi), hivyo linabaki kama "orodha" nzuri bila lebo za ziada. */
+  .dash-main .card table:not(.tbl-cards) tr { display: flex; justify-content: space-between; gap: 10px; }
+  .dash-main .card table:not(.tbl-cards) td { border-bottom: 1px dashed rgba(255,255,255,0.1); }
+}

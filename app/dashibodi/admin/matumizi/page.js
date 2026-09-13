@@ -102,7 +102,7 @@ export default function AdminMatumiziPage() {
         <>
           <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
           <div className="table-wrap">
-            <table>
+            <table className="tbl-cards tbl-expenses">
               <thead>
                 <tr><th>Tarehe</th><th>Aina</th><th>Maelezo</th><th>Kiasi</th><th></th></tr>
               </thead>

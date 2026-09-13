@@ -205,7 +205,7 @@ export default function AdminWafanyakaziPage() {
         <>
           <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
           <div className="table-wrap">
-            <table>
+            <table className="tbl-cards tbl-staff">
               <thead>
                 <tr>
                   <th>Picha</th>
