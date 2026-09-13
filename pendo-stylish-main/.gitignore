@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.env
+logs/
+public/uploads/*
+!public/uploads/wafanyakazi/.gitkeep
+!public/uploads/bidhaa/.gitkeep
+!public/uploads/gallery/.gitkeep
