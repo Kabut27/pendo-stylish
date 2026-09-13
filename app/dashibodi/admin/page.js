@@ -50,20 +50,32 @@ export default function AdminOverviewPage() {
         <>
           <div className="stat-grid">
             <div className="stat-card">
-              <div className="value"><CountUp value={data.totalRevenue} suffix=" TZS" /></div>
-              <div className="label">Jumla ya Mapato</div>
+              <div className="stat-icon" aria-hidden="true">💰</div>
+              <div>
+                <div className="value"><CountUp value={data.totalRevenue} suffix=" TZS" /></div>
+                <div className="label">Jumla ya Mapato</div>
+              </div>
             </div>
             <div className="stat-card">
-              <div className="value"><CountUp value={data.totalProfit} suffix=" TZS" /></div>
-              <div className="label">Faida ya Mauzo</div>
+              <div className="stat-icon" aria-hidden="true">📈</div>
+              <div>
+                <div className="value"><CountUp value={data.totalProfit} suffix=" TZS" /></div>
+                <div className="label">Faida ya Mauzo</div>
+              </div>
             </div>
             <div className="stat-card">
-              <div className="value"><CountUp value={data.salesCount} /></div>
-              <div className="label">Idadi ya Mauzo</div>
+              <div className="stat-icon" aria-hidden="true">🧾</div>
+              <div>
+                <div className="value"><CountUp value={data.salesCount} /></div>
+                <div className="label">Idadi ya Mauzo</div>
+              </div>
             </div>
             <div className="stat-card">
-              <div className="value"><CountUp value={data.staffCount} /></div>
-              <div className="label">Wafanyakazi Wanaofanya Kazi</div>
+              <div className="stat-icon" aria-hidden="true">👥</div>
+              <div>
+                <div className="value"><CountUp value={data.staffCount} /></div>
+                <div className="label">Wafanyakazi Wanaofanya Kazi</div>
+              </div>
             </div>
           </div>
 
@@ -84,39 +96,42 @@ export default function AdminOverviewPage() {
 
           <div className="card" style={{ padding: 18 }}>
             <h3>Mauzo kwa Kila Mfanyakazi ({PERIODS.find((p) => p.key === period)?.label})</h3>
-            <p className="small muted" style={{ marginTop: -8, marginBottom: 12 }}>
+            <p className="small muted" style={{ marginTop: -8, marginBottom: 4 }}>
               Bonyeza jina la mfanyakazi kuona orodha kamili ya huduma/bidhaa alizofanya (si jumla tu).
             </p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Mfanyakazi</th>
-                  <th>Idadi</th>
-                  <th>Mapato</th>
-                  <th>Faida</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.byStaff.map((s) => (
-                  <tr key={s.staff_id}>
-                    <td>
-                      <Link
-                        href={`/dashibodi/admin/mauzo?staff_id=${s.staff_id}`}
-                        style={{ color: "var(--purple)", fontWeight: 600, textDecoration: "underline" }}
-                      >
-                        {s.full_name}
-                      </Link>
-                    </td>
-                    <td>{s.count}</td>
-                    <td>{Number(s.revenue).toLocaleString("sw-TZ")} TZS</td>
-                    <td>{Number(s.profit).toLocaleString("sw-TZ")} TZS</td>
+            <span className="scroll-hint">↔️ Sogeza kando kuona Mapato na Faida</span>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mfanyakazi</th>
+                    <th>Idadi</th>
+                    <th>Mapato</th>
+                    <th>Faida</th>
                   </tr>
-                ))}
-                {data.byStaff.length === 0 && (
-                  <tr><td colSpan={4} className="center muted">Hakuna wafanyakazi bado.</td></tr>
-                )}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {data.byStaff.map((s) => (
+                    <tr key={s.staff_id}>
+                      <td>
+                        <Link
+                          href={`/dashibodi/admin/mauzo?staff_id=${s.staff_id}`}
+                          style={{ color: "var(--purple)", fontWeight: 600, textDecoration: "underline" }}
+                        >
+                          {s.full_name}
+                        </Link>
+                      </td>
+                      <td>{s.count}</td>
+                      <td>{Number(s.revenue).toLocaleString("sw-TZ")} TZS</td>
+                      <td>{Number(s.profit).toLocaleString("sw-TZ")} TZS</td>
+                    </tr>
+                  ))}
+                  {data.byStaff.length === 0 && (
+                    <tr><td colSpan={4} className="center muted">Hakuna wafanyakazi bado.</td></tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </>
       )}

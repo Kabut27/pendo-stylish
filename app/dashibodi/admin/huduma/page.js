@@ -119,23 +119,25 @@ export default function AdminHudumaPage() {
       {loading ? (
         <p className="muted">Inapakia...</p>
       ) : (
-        <table>
-          <thead><tr><th>Jina</th><th>Bei</th><th>Hali</th><th></th></tr></thead>
-          <tbody>
-            {services.map((s) => (
-              <tr key={s.id}>
-                <td>{s.name}</td>
-                <td>{Number(s.price).toLocaleString("sw-TZ")} TZS</td>
-                <td><span className={`pill ${s.active ? "pill-on" : "pill-off"}`}>{s.active ? "Inaonekana" : "Imefichwa"}</span></td>
-                <td className="flex gap-8">
-                  <button className="btn btn-sm btn-secondary" onClick={() => startEdit(s)}>Hariri</button>
-                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Futa</button>
-                </td>
-              </tr>
-            ))}
-            {services.length === 0 && <tr><td colSpan={4} className="center muted">Hakuna huduma bado.</td></tr>}
-          </tbody>
-        </table>
+        <div className="table-wrap">
+          <table>
+            <thead><tr><th>Jina</th><th>Bei</th><th>Hali</th><th></th></tr></thead>
+            <tbody>
+              {services.map((s) => (
+                <tr key={s.id}>
+                  <td>{s.name}</td>
+                  <td>{Number(s.price).toLocaleString("sw-TZ")} TZS</td>
+                  <td><span className={`pill ${s.active ? "pill-on" : "pill-off"}`}>{s.active ? "Inaonekana" : "Imefichwa"}</span></td>
+                  <td className="flex gap-8">
+                    <button className="btn btn-sm btn-secondary" onClick={() => startEdit(s)}>Hariri</button>
+                    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Futa</button>
+                  </td>
+                </tr>
+              ))}
+              {services.length === 0 && <tr><td colSpan={4} className="center muted">Hakuna huduma bado.</td></tr>}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

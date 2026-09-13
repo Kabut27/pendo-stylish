@@ -298,46 +298,51 @@ function AdminMauzoContent() {
       {loading ? (
         <p className="muted">Inapakia...</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Tarehe</th>
-              <th>Aliyefanya</th>
-              <th>Kitu</th>
-              <th>Mapato</th>
-              <th>Matumizi</th>
-              <th>Faida</th>
-              <th>Aliyeingiza</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {sales.map((s) => (
-              <tr key={s.id}>
-                <td className="small">
-                  {new Date(s.sale_date).toLocaleDateString("sw-TZ")}
-                  {isRowLocked(String(s.sale_date).slice(0, 10)) && (
-                    <span title="Kipindi hiki kimefungwa kwa wafanyakazi" style={{ marginLeft: 4 }}>🔒</span>
-                  )}
-                </td>
-                <td>{s.staff_name}</td>
-                <td>
-                  {s.item_name}
-                  {s.service_detail ? <><br /><span className="small muted">{s.service_detail}</span></> : null}
-                  {s.customer_name ? <><br /><span className="small muted">Mteja: {s.customer_name}</span></> : null}
-                </td>
-                <td>{Number(s.revenue).toLocaleString("sw-TZ")}</td>
-                <td>{Number(s.cost).toLocaleString("sw-TZ")}</td>
-                <td>{Number(s.profit).toLocaleString("sw-TZ")}</td>
-                <td className="small muted">{s.entered_by_name || "—"}</td>
-                <td>
-                  <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Futa</button>
-                </td>
-              </tr>
-            ))}
-            {sales.length === 0 && <tr><td colSpan={8} className="center muted">Hakuna mauzo bado.</td></tr>}
-          </tbody>
-        </table>
+        <>
+          <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tarehe</th>
+                  <th>Aliyefanya</th>
+                  <th>Kitu</th>
+                  <th>Mapato</th>
+                  <th>Matumizi</th>
+                  <th>Faida</th>
+                  <th>Aliyeingiza</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {sales.map((s) => (
+                  <tr key={s.id}>
+                    <td className="small">
+                      {new Date(s.sale_date).toLocaleDateString("sw-TZ")}
+                      {isRowLocked(String(s.sale_date).slice(0, 10)) && (
+                        <span title="Kipindi hiki kimefungwa kwa wafanyakazi" style={{ marginLeft: 4 }}>🔒</span>
+                      )}
+                    </td>
+                    <td>{s.staff_name}</td>
+                    <td>
+                      {s.item_name}
+                      {s.service_detail ? <><br /><span className="small muted">{s.service_detail}</span></> : null}
+                      {s.customer_name ? <><br /><span className="small muted">Mteja: {s.customer_name}</span></> : null}
+                    </td>
+                    <td>{Number(s.revenue).toLocaleString("sw-TZ")}</td>
+                    <td>{Number(s.cost).toLocaleString("sw-TZ")}</td>
+                    <td>{Number(s.profit).toLocaleString("sw-TZ")}</td>
+                    <td className="small muted">{s.entered_by_name || "—"}</td>
+                    <td>
+                      <button className="btn btn-sm btn-danger" onClick={() => handleDelete(s.id)}>Futa</button>
+                    </td>
+                  </tr>
+                ))}
+                {sales.length === 0 && <tr><td colSpan={8} className="center muted">Hakuna mauzo bado.</td></tr>}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );

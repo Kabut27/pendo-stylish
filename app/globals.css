@@ -837,6 +837,69 @@ th, td { padding: 10px 12px; text-align: left; font-size: 0.88rem; border-bottom
 th { background: var(--pink-soft); color: var(--purple-deep); font-family: "Playfair Display", serif; }
 tr { transition: background var(--transition); }
 tbody tr:hover { background: #fbf4fb; }
+tbody tr:nth-child(even) { background: #fdfaff; }
+tbody tr:nth-child(even):hover { background: #fbf4fb; }
+
+/* ---------- Dashboard tables: scroll properly instead of being cut off ----------
+   Kabla: jedwali lilikuwa ndani ya .card ambayo ina overflow:hidden, hivyo
+   safu zilizozidi upana (Mapato/Faida) zilikatwa tu bila kuweza ku-scroll.
+   Sasa: kifuniko chochote chenye "table" (.table-wrap, au .card yoyote
+   iliyo na jedwali moja kwa moja) kinaruhusu ku-scroll kando kwa vidole,
+   na kichwa cha jedwali (thead) kinabaki "kimeshikamana" juu wakati wa
+   kutelezesha chini, huku safu ya kwanza (jina) ikibaki kushoto ili
+   mtumiaji asipoteze mstari wake anaposogeza kuona Idadi/Mapato/Faida. */
+.table-wrap,
+.dash-main .card:has(> table),
+.dash-main .card:has(> div > table) {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple-light) var(--pink-soft);
+}
+.table-wrap::-webkit-scrollbar,
+.dash-main .card::-webkit-scrollbar { height: 7px; }
+.table-wrap::-webkit-scrollbar-track,
+.dash-main .card::-webkit-scrollbar-track { background: var(--pink-soft); border-radius: 8px; }
+.table-wrap::-webkit-scrollbar-thumb,
+.dash-main .card::-webkit-scrollbar-thumb { background: var(--purple-light); border-radius: 8px; }
+
+.dash-main table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.dash-main table th:first-child,
+.dash-main table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: white;
+  box-shadow: 2px 0 6px rgba(59, 16, 87, 0.08);
+}
+.dash-main table thead th:first-child { z-index: 3; background: var(--pink-soft); }
+.dash-main table tbody tr:nth-child(even) td:first-child { background: #fdfaff; }
+.dash-main table tbody tr:hover td:first-child { background: #fbf4fb; }
+
+/* Kidokezo kidogo cha "sogeza kuona zaidi" - kinaonekana tu kwenye simu
+   ambapo jedwali huwa pana kuliko skrini. */
+.scroll-hint {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--purple);
+  background: var(--pink-soft);
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin: -4px 0 12px;
+  width: fit-content;
+}
+@media (max-width: 640px) {
+  .scroll-hint { display: inline-flex; }
+}
 
 /* ---------- Stat cards (count-up) ---------- */
 .stat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 24px; }
@@ -847,8 +910,24 @@ tbody tr:hover { background: #fbf4fb; }
   padding: 18px;
   box-shadow: var(--shadow);
   border-top: 3px solid var(--gold);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-.stat-card .value { font-size: 1.5rem; font-weight: 800; color: var(--purple-deep); font-family: "Playfair Display", serif; }
+.stat-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(59,16,87,0.16); }
+.stat-card .stat-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  background: linear-gradient(135deg, var(--pink-soft), var(--pink));
+}
+.stat-card .value { font-size: 1.5rem; font-weight: 800; color: var(--purple-deep); font-family: "Playfair Display", serif; line-height: 1.2; }
 .stat-card .label { color: var(--text-muted); font-size: 0.82rem; margin-top: 4px; }
 
 /* Simple bar chart (CSS-only) */

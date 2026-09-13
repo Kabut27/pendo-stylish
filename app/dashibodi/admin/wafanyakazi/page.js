@@ -202,44 +202,49 @@ export default function AdminWafanyakaziPage() {
       {loading ? (
         <p className="muted">Inapakia...</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Picha</th>
-              <th>Jina</th>
-              <th>Aina</th>
-              <th>Ujuzi</th>
-              <th>Hali</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {staff.map((s) => (
-              <tr key={s.id}>
-                <td>
-                  {s.profile_image ? (
-                    <img src={s.profile_image} alt={s.full_name} style={{ width: 40, height: 40, objectFit: "cover", borderRadius: "50%" }} />
-                  ) : "—"}
-                </td>
-                <td>{s.full_name}<br /><span className="small muted">@{s.username}</span></td>
-                <td>{s.role === "admin" ? "Msimamizi" : "Mfanyakazi"}</td>
-                <td className="small">{(s.skills || []).join(", ") || "—"}</td>
-                <td>
-                  <span className={`pill ${s.active ? "pill-on" : "pill-off"}`}>
-                    {s.active ? "Anafanya kazi" : "Amezimwa"}
-                  </span>
-                </td>
-                <td className="flex gap-8">
-                  <button className="btn btn-sm btn-secondary" onClick={() => startEdit(s)}>Hariri</button>
-                  <button className="btn btn-sm btn-danger" onClick={() => toggleActive(s)}>
-                    {s.active ? "Zima" : "Washa"}
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {staff.length === 0 && <tr><td colSpan={6} className="center muted">Hakuna wafanyakazi bado.</td></tr>}
-          </tbody>
-        </table>
+        <>
+          <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Picha</th>
+                  <th>Jina</th>
+                  <th>Aina</th>
+                  <th>Ujuzi</th>
+                  <th>Hali</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {staff.map((s) => (
+                  <tr key={s.id}>
+                    <td>
+                      {s.profile_image ? (
+                        <img src={s.profile_image} alt={s.full_name} style={{ width: 40, height: 40, objectFit: "cover", borderRadius: "50%" }} />
+                      ) : "—"}
+                    </td>
+                    <td>{s.full_name}<br /><span className="small muted">@{s.username}</span></td>
+                    <td>{s.role === "admin" ? "Msimamizi" : "Mfanyakazi"}</td>
+                    <td className="small">{(s.skills || []).join(", ") || "—"}</td>
+                    <td>
+                      <span className={`pill ${s.active ? "pill-on" : "pill-off"}`}>
+                        {s.active ? "Anafanya kazi" : "Amezimwa"}
+                      </span>
+                    </td>
+                    <td className="flex gap-8">
+                      <button className="btn btn-sm btn-secondary" onClick={() => startEdit(s)}>Hariri</button>
+                      <button className="btn btn-sm btn-danger" onClick={() => toggleActive(s)}>
+                        {s.active ? "Zima" : "Washa"}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {staff.length === 0 && <tr><td colSpan={6} className="center muted">Hakuna wafanyakazi bado.</td></tr>}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );

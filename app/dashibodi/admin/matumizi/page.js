@@ -99,23 +99,28 @@ export default function AdminMatumiziPage() {
       {loading ? (
         <p className="muted">Inapakia...</p>
       ) : (
-        <table>
-          <thead>
-            <tr><th>Tarehe</th><th>Aina</th><th>Maelezo</th><th>Kiasi</th><th></th></tr>
-          </thead>
-          <tbody>
-            {expenses.map((ex) => (
-              <tr key={ex.id}>
-                <td className="small">{new Date(ex.expense_date).toLocaleDateString("sw-TZ")}</td>
-                <td>{ex.category}</td>
-                <td className="small muted">{ex.description || "—"}</td>
-                <td>{Number(ex.amount).toLocaleString("sw-TZ")} TZS</td>
-                <td><button className="btn btn-sm btn-danger" onClick={() => handleDelete(ex.id)}>Futa</button></td>
-              </tr>
-            ))}
-            {expenses.length === 0 && <tr><td colSpan={5} className="center muted">Hakuna matumizi bado.</td></tr>}
-          </tbody>
-        </table>
+        <>
+          <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Tarehe</th><th>Aina</th><th>Maelezo</th><th>Kiasi</th><th></th></tr>
+              </thead>
+              <tbody>
+                {expenses.map((ex) => (
+                  <tr key={ex.id}>
+                    <td className="small">{new Date(ex.expense_date).toLocaleDateString("sw-TZ")}</td>
+                    <td>{ex.category}</td>
+                    <td className="small muted">{ex.description || "—"}</td>
+                    <td>{Number(ex.amount).toLocaleString("sw-TZ")} TZS</td>
+                    <td><button className="btn btn-sm btn-danger" onClick={() => handleDelete(ex.id)}>Futa</button></td>
+                  </tr>
+                ))}
+                {expenses.length === 0 && <tr><td colSpan={5} className="center muted">Hakuna matumizi bado.</td></tr>}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );

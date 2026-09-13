@@ -190,7 +190,10 @@ export default function AdminBidhaaPage() {
       {loading ? (
         <p className="muted">Inapakia...</p>
       ) : (
-        <table>
+        <>
+          <span className="scroll-hint">↔️ Sogeza kando kuona safu zote</span>
+          <div className="table-wrap">
+            <table>
           <thead>
             <tr>
               <th>Picha</th>
@@ -242,7 +245,9 @@ export default function AdminBidhaaPage() {
               <tr><td colSpan={5} className="center muted">Hakuna bidhaa bado.</td></tr>
             )}
           </tbody>
-        </table>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );
