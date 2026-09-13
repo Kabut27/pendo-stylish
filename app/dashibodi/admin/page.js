@@ -94,25 +94,26 @@ export default function AdminOverviewPage() {
                   <th>Idadi</th>
                   <th>Mapato</th>
                   <th>Faida</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {data.byStaff.map((s) => (
                   <tr key={s.staff_id}>
-                    <td>{s.full_name}</td>
+                    <td>
+                      <Link
+                        href={`/dashibodi/admin/mauzo?staff_id=${s.staff_id}`}
+                        style={{ color: "var(--purple)", fontWeight: 600, textDecoration: "underline" }}
+                      >
+                        {s.full_name}
+                      </Link>
+                    </td>
                     <td>{s.count}</td>
                     <td>{Number(s.revenue).toLocaleString("sw-TZ")} TZS</td>
                     <td>{Number(s.profit).toLocaleString("sw-TZ")} TZS</td>
-                    <td>
-                      <Link href={`/dashibodi/admin/mauzo?staff_id=${s.staff_id}`} className="btn btn-sm btn-secondary">
-                        Ona Orodha
-                      </Link>
-                    </td>
                   </tr>
                 ))}
                 {data.byStaff.length === 0 && (
-                  <tr><td colSpan={5} className="center muted">Hakuna wafanyakazi bado.</td></tr>
+                  <tr><td colSpan={4} className="center muted">Hakuna wafanyakazi bado.</td></tr>
                 )}
               </tbody>
             </table>
