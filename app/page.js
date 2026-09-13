@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import FloatingSocial from "@/components/FloatingSocial";
 import { query } from "@/lib/db";
 import { getSettings } from "@/lib/getSettings";
@@ -11,9 +10,7 @@ import { attachProductImages } from "@/lib/products";
 export const revalidate = 0;
 
 const TRUST_ICONS = [
-  { icon: "✅", label: "Bidhaa Halisi 100%" },
   { icon: "⭐", label: "Wateja Wanaoridhika" },
-  { icon: "💬", label: "Ushauri Bure WhatsApp" },
 ];
 
 async function getHomeProducts() {
@@ -69,7 +66,6 @@ export default async function HomePage() {
         </div>
         <div className="promo-coupon">
           <span className="promo-coupon-badge">Zawadi</span>
-          <WhatsAppButton number={settings.whatsapp_number} className="btn btn-whatsapp btn-sm" />
         </div>
       </section>
 
