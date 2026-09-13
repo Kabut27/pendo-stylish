@@ -1,0 +1,1419 @@
+/* ===========================================================
+   Pendo Stylish — Muonekano wa Kifahari (Mobile-first)
+   Rangi: Zambarau ya kina + Dhahabu + Waridi laini
+   =========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --purple-deep: #3b1057;
+  --purple: #5b1f8a;
+  --purple-light: #8a4fc4;
+  --gold: #d4af37;
+  --gold-light: #f2d98a;
+  --pink: #f4c9d8;
+  --pink-soft: #fdf1f5;
+  --bg: #fffaf7;
+  --text-dark: #241226;
+  --text-muted: #6b5b73;
+  --white: #ffffff;
+  --danger: #b3261e;
+  --success: #1e7d4c;
+  --radius: 16px;
+  --shadow: 0 8px 24px rgba(59, 16, 87, 0.12);
+  --transition: 200ms ease;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text-dark);
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", serif;
+  color: var(--purple-deep);
+  margin: 0 0 0.4em 0;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--purple), var(--purple-deep));
+  color: var(--white);
+  box-shadow: var(--shadow);
+}
+.btn-primary:hover { background: linear-gradient(135deg, var(--purple-light), var(--purple)); }
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--purple-deep);
+}
+.btn-gold:hover { filter: brightness(1.05); }
+
+.btn-whatsapp {
+  background: #25d366;
+  color: white;
+}
+.btn-whatsapp:hover { background: #1ebd5a; }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--purple);
+  color: var(--purple);
+}
+.btn-outline:hover { background: var(--pink-soft); }
+
+.btn-danger { background: var(--danger); color: white; }
+.btn-secondary { background: #eee2f0; color: var(--purple-deep); }
+.btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ---------- Announcement bar ---------- */
+.announcement-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--purple-deep);
+  color: var(--pink-soft);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 8px 40px 8px 16px;
+  position: relative;
+  text-align: center;
+}
+.announcement-link {
+  color: var(--gold-light);
+  text-decoration: underline;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.announcement-close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--pink-soft);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+/* ---------- Header / Footer ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 250, 247, 0.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(91, 31, 138, 0.08);
+}
+.site-header .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+.header-icons {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px 10px;
+}
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--purple-deep);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+/* Kitufe cha kufungua menu (hamburger) - duara la zambarau ya kina,
+   muonekano sawa na .dash-sidebar-toggle ya dashibodi ya admin. */
+.mmenu-open-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--purple-deep);
+  color: var(--pink-soft);
+  box-shadow: var(--shadow);
+}
+.brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--purple-deep);
+}
+.brand span { color: var(--gold); }
+.brand-center { text-align: center; justify-self: center; font-size: 1.15rem; white-space: nowrap; }
+.nav-links {
+  display: flex;
+  gap: 18px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  padding: 0 16px 10px;
+}
+.nav-links a { transition: color var(--transition); white-space: nowrap; }
+.nav-links a:hover { color: var(--purple); }
+
+/* ---------- Mobile / full-screen menu ---------- */
+/* Ficha checkbox/radio halisi (checkbox hack) - haipaswi kuonekana kwenye
+   ukurasa, ni "swichi" ya CSS pekee. */
+.mmenu-toggle-input,
+.mmenu-tab-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Backdrop nyeusi-nyeusi nyuma ya drawer, sawa na .dash-sidebar-overlay
+   ya dashibodi - imefichwa kwa default, inaonekana tu #mmenu-toggle
+   ikiwa "checked". Ni <label> hivyo kubonyeza popote juu yake kunafunga
+   menu bila JS yoyote. */
+.mmenu-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+  background: rgba(20, 6, 30, 0.45);
+  cursor: pointer;
+}
+#mmenu-toggle:checked ~ .mmenu-backdrop {
+  display: block;
+  animation: fadeIn 150ms ease both;
+}
+
+/* Menu sasa ni "drawer" ya zambarau ya kina inayotelezea kutoka kushoto -
+   muonekano sawa na .dash-sidebar ya dashibodi ya admin/mfanyakazi -
+   badala ya kufunika skrini nzima. Imefichwa nje ya skrini (translateX)
+   kwa default, inatelezea ndani #mmenu-toggle ikiwa "checked". */
+.mmenu-overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 86vw;
+  max-width: 320px;
+  z-index: 200;
+  background: var(--purple-deep);
+  color: var(--pink-soft);
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 220ms ease;
+  box-shadow: 6px 0 24px rgba(0, 0, 0, 0.25);
+}
+#mmenu-toggle:checked ~ .mmenu-overlay {
+  transform: translateX(0);
+}
+
+.mmenu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+}
+.mmenu-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--pink-soft);
+}
+.mmenu-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.mmenu-tabs {
+  width: 34%;
+  max-width: 150px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow-y: auto;
+  padding: 6px 0;
+}
+.mmenu-tab {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 14px 14px;
+  font-size: 0.92rem;
+  color: var(--pink-soft);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+.mmenu-tab.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--gold-light);
+  font-weight: 700;
+  border-left-color: var(--gold);
+}
+.mmenu-tabs-divider { height: 1px; background: rgba(255,255,255,0.15); margin: 6px 14px; }
+/* Panel za tabs zimefichwa kwa default (display: none); Header.js huongeza
+   <style> ndogo inayoonyesha panel sahihi tu kulingana na tab.key ya
+   kategoria iliyochaguliwa (tazama MENU_TABS). */
+.mmenu-panel {
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  flex-direction: column;
+  gap: 10px;
+}
+.mmenu-featured {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--pink-soft), var(--pink));
+  border-radius: var(--radius);
+  padding: 16px;
+  font-weight: 700;
+  color: var(--purple-deep);
+}
+.mmenu-featured-more { font-size: 0.78rem; font-weight: 600; opacity: 0.8; }
+.mmenu-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px;
+  font-size: 0.92rem;
+  color: var(--pink-soft);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+}
+.mmenu-tile:hover { background: rgba(255,255,255,0.06); }
+.mmenu-tile-icon { font-size: 1.2rem; }
+.social-icons { display: flex; gap: 10px; }
+.social-icons a {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--pink-soft);
+  color: var(--purple-deep);
+  transition: transform var(--transition), background var(--transition);
+}
+.social-icons a:hover { transform: translateY(-2px); background: var(--pink); }
+
+.site-footer {
+  background: var(--purple-deep);
+  color: var(--pink-soft);
+  padding: 34px 16px 20px;
+  margin-top: 60px;
+}
+.site-footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+.site-footer a { opacity: 0.85; }
+.site-footer .social-icons a { background: rgba(255,255,255,0.08); color: var(--gold-light); }
+.footer-note { text-align: center; margin-top: 24px; font-size: 0.8rem; opacity: 0.65; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 70px 16px 60px;
+  text-align: center;
+  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,0.15), transparent 60%),
+              linear-gradient(180deg, var(--pink-soft), var(--bg));
+  overflow: hidden;
+}
+/* Blurred gradient "orbs" behind the hero content — a lightweight (pure-CSS,
+   no images/JS) nod to the soft glowing backdrops used on sites like
+   vitejs.dev and heroui.com. They sit behind everything and never block taps. */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 9s ease-in-out infinite alternate;
+}
+.hero-orb-1 { width: 220px; height: 220px; top: -60px; left: -40px; background: var(--gold-light); }
+.hero-orb-2 { width: 260px; height: 260px; bottom: -80px; right: -60px; background: var(--purple-light); animation-delay: 1.5s; }
+.hero-orb-3 { width: 160px; height: 160px; top: 30%; right: 10%; background: var(--pink); animation-delay: 3s; }
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(10px, -14px) scale(1.08); }
+}
+.hero > *:not(.hero-orb) { position: relative; z-index: 1; }
+
+.hero h1 {
+  font-size: 2.1rem;
+  line-height: 1.15;
+  animation: fadeInUp 700ms ease both;
+}
+.hero p {
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 10px auto 26px;
+  animation: fadeInUp 700ms ease 100ms both;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 700ms ease 200ms both;
+}
+
+/* ---------- Promo hero (banner kubwa yenye ofa) ---------- */
+.promo-hero {
+  position: relative;
+  padding: 28px 20px 22px;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple) 55%, var(--purple-light) 100%);
+  color: var(--white);
+}
+.promo-hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.45;
+  pointer-events: none;
+  animation: orbFloat 9s ease-in-out infinite alternate;
+}
+.promo-hero-orb-1 { width: 160px; height: 160px; top: -50px; left: -40px; background: var(--gold-light); }
+.promo-hero-orb-2 { width: 150px; height: 150px; bottom: -40px; right: -30px; background: var(--pink); animation-delay: 2s; }
+.promo-hero > *:not(.promo-hero-orb) { position: relative; z-index: 1; }
+.promo-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--gold-light);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.promo-hero h1 { color: var(--white); font-size: 1.7rem; margin-bottom: 6px; animation: fadeInUp 700ms ease both; }
+.promo-hero .gradient-text { background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.promo-tagline { color: var(--pink-soft); opacity: 0.9; max-width: 420px; margin: 0 auto 4px; font-size: 0.9rem; animation: fadeInUp 700ms ease 100ms both; }
+.promo-offer { font-size: 0.95rem; margin: 4px 0 14px; animation: fadeInUp 700ms ease 150ms both; }
+.promo-offer strong { color: var(--gold-light); }
+.btn-dark-pill {
+  background: var(--text-dark);
+  color: var(--white);
+  padding: 14px 34px;
+  font-size: 1rem;
+}
+.btn-dark-pill:hover { background: #000; }
+.promo-coupon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.promo-coupon-badge {
+  background: var(--gold-light);
+  color: var(--purple-deep);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+/* ---------- Trust icons row ---------- */
+.trust-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.trust-icon-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.trust-icon-emoji { font-size: 1.3rem; }
+
+/* ---------- Category tiles (gridi ya makundi na thumbnail) ---------- */
+.category-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 480px) { .category-tiles { grid-template-columns: repeat(2, 1fr); } }
+.category-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+.category-tile:hover { transform: translateY(-3px); }
+.category-tile-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, var(--pink-soft), var(--pink));
+}
+.category-tile-label { font-size: 0.82rem; font-weight: 600; color: var(--text-dark); }
+
+/* ---------- Section ---------- */
+.section { padding: 46px 0; }
+.section-title { text-align: center; margin-bottom: 26px; }
+.section-title h2 { font-size: 1.6rem; }
+.section-title p { color: var(--text-muted); }
+
+/* ---------- Cards grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+/* Tumeondoa media queries za desktop (3/4 columns) kwa makusudi - grid
+   inabaki kolamu 2 kila wakati, hata kwenye kompyuta, kwa sababu tovuti hii
+   ni mahususi kwa watumiaji wa simu. */
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: fadeIn 500ms ease both;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(59,16,87,0.18); }
+.card .img-wrap { aspect-ratio: 1/1; background: var(--pink-soft); overflow: hidden; }
+.card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease; }
+.card:hover .img-wrap img { transform: scale(1.06); }
+.card-body { padding: 12px 14px 16px; }
+.card-body h3 { font-size: 1rem; margin-bottom: 4px; }
+.price { color: var(--purple); font-weight: 700; font-size: 1.05rem; }
+.badge {
+  position: absolute;
+  margin: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: white;
+}
+.badge-mpya { background: var(--purple); }
+.badge-inayopendwa { background: var(--gold); color: var(--purple-deep); }
+.card-media { position: relative; }
+
+/* ---------- Product card: picha nyingi, video, kufunguka/kubonyezeka ---------- */
+.product-media-btn {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: var(--pink-soft);
+}
+.product-media-btn video { width: 100%; height: 100%; object-fit: cover; background: #000; }
+.no-image-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 0.75rem;
+}
+.pic-count-badge {
+  position: absolute;
+  z-index: 2;
+  right: 8px;
+  top: 8px;
+  background: rgba(36, 18, 38, 0.65);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.video-play-btn {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(36, 18, 38, 0.72);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+.expand-hint {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  bottom: 8px;
+  background: rgba(255,255,255,0.85);
+  color: var(--purple-deep);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+}
+.thumb-strip {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  padding: 8px 6px;
+  background: var(--white);
+}
+.thumb-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--pink);
+  cursor: pointer;
+}
+.thumb-dot-active { background: var(--purple); width: 18px; border-radius: 5px; }
+.product-desc-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.product-desc-open { -webkit-line-clamp: unset; }
+.desc-toggle-link {
+  background: none;
+  border: none;
+  color: var(--purple);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+.product-card-open { box-shadow: 0 14px 32px rgba(59,16,87,0.2); }
+
+/* ---------- Admin: multi-image uploader ---------- */
+.multi-image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.multi-image-thumb {
+  position: relative;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+.multi-image-thumb img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+.multi-image-main-tag {
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+  background: var(--purple);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+.multi-image-remove {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(179, 38, 30, 0.9);
+  color: #fff;
+  font-size: 0.65rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Services list (no images) */
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--white);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(59,16,87,0.06);
+  transition: transform var(--transition);
+}
+.service-row:hover { transform: translateX(3px); }
+
+/* Before / After */
+.ba-card { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border-radius: var(--radius); overflow: hidden; }
+.ba-card img { aspect-ratio: 3/4; object-fit: cover; }
+.ba-label { text-align: center; font-size: 0.72rem; font-weight: 700; padding: 4px; background: var(--purple-deep); color: white; }
+
+/* Fade-in on load (lazy images) */
+.fade-in-img { animation: fadeIn 500ms ease both; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(14px);} to { opacity: 1; transform: translateY(0);} }
+
+/* ---------- Forms (dashboard) ---------- */
+.form-group { margin-bottom: 14px; }
+label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 5px; color: var(--purple-deep); }
+input, textarea, select {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 10px;
+  border: 1.5px solid #e6d9ec;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: white;
+  transition: border-color var(--transition);
+}
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--purple); }
+.form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.form-row > * { flex: 1; min-width: 140px; }
+
+.alert { padding: 10px 14px; border-radius: 10px; font-size: 0.88rem; margin-bottom: 12px; }
+.alert-error { background: #fde8e6; color: var(--danger); }
+.alert-success { background: #e4f5ea; color: var(--success); }
+
+/* ---------- Dashboard shell ----------
+   Sidebar ni "drawer" inayofichika kwa default (professional kwa simu) -
+   haichukui nafasi ya kudumu ya skrini. Mtumiaji anafungua kwa kugusa
+   kitufe cha hamburger (.dash-sidebar-toggle), sidebar inatokeza juu ya
+   maudhui (position:fixed) badala ya kubana .dash-main. */
+.dash-shell { min-height: 100vh; }
+.dash-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  max-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  gap: 2px;
+  padding: 14px 10px;
+  background: var(--purple-deep);
+  color: var(--pink-soft);
+  z-index: 300;
+  transform: translateX(-100%);
+  transition: transform 220ms ease;
+  box-shadow: 6px 0 24px rgba(0,0,0,0.25);
+}
+.dash-sidebar.dash-sidebar-open {
+  transform: translateX(0);
+}
+.dash-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 6, 30, 0.45);
+  z-index: 290;
+  animation: fadeIn 150ms ease both;
+}
+.dash-sidebar-toggle {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 310;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--purple-deep);
+  color: var(--pink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+.dash-sidebar .brand {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  padding: 6px 16px 16px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 8px;
+}
+.dash-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 8px;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  transition: background var(--transition);
+}
+.dash-sidebar a .dash-sidebar-icon { font-size: 1.05rem; flex-shrink: 0; width: 20px; text-align: center; }
+.dash-sidebar a:hover, .dash-sidebar a.active { background: rgba(255,255,255,0.1); }
+.dash-main { padding: 70px 16px 22px; max-width: 100%; overflow-x: auto; min-width: 0; }
+
+/* Marekebisho: kwenye simu ndogo, "table { width: 100% }" (chini) inalazimisha
+   jedwali lisizidi upana wa skrini - safu za mwisho (kama kitufe "Ona Orodha")
+   zinabanwa/kukatika badala ya kupatikana kwa ku-scroll. .dash-main tayari ina
+   overflow-x:auto - hii inampa jedwali "sababu" ya kuzidi upana wa skrini
+   ili scroll ianze kufanya kazi, badala ya kubana column zote. Inagusa
+   majedwali YOTE ya dashibodi (mauzo, wafanyakazi, bidhaa, ripoti, n.k.)
+   kwa mabadiliko haya moja tu. */
+@media (max-width: 640px) {
+  .dash-main table { width: auto; min-width: 600px; }
+  .dash-main th, .dash-main td { white-space: nowrap; }
+}
+
+/* ---------- Table ---------- */
+table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; }
+th, td { padding: 10px 12px; text-align: left; font-size: 0.88rem; border-bottom: 1px solid #f1e7f4; }
+th { background: var(--pink-soft); color: var(--purple-deep); font-family: "Playfair Display", serif; }
+tr { transition: background var(--transition); }
+tbody tr:hover { background: #fbf4fb; }
+tbody tr:nth-child(even) { background: #fdfaff; }
+tbody tr:nth-child(even):hover { background: #fbf4fb; }
+
+/* ---------- Dashboard tables: scroll properly instead of being cut off ----------
+   Kabla: jedwali lilikuwa ndani ya .card ambayo ina overflow:hidden, hivyo
+   safu zilizozidi upana (Mapato/Faida) zilikatwa tu bila kuweza ku-scroll.
+   Sasa: kifuniko chochote chenye "table" (.table-wrap, au .card yoyote
+   iliyo na jedwali moja kwa moja) kinaruhusu ku-scroll kando kwa vidole,
+   na kichwa cha jedwali (thead) kinabaki "kimeshikamana" juu wakati wa
+   kutelezesha chini, huku safu ya kwanza (jina) ikibaki kushoto ili
+   mtumiaji asipoteze mstari wake anaposogeza kuona Idadi/Mapato/Faida. */
+.table-wrap,
+.dash-main .card:has(> table),
+.dash-main .card:has(> div > table) {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple-light) var(--pink-soft);
+}
+.table-wrap::-webkit-scrollbar,
+.dash-main .card::-webkit-scrollbar { height: 7px; }
+.table-wrap::-webkit-scrollbar-track,
+.dash-main .card::-webkit-scrollbar-track { background: var(--pink-soft); border-radius: 8px; }
+.table-wrap::-webkit-scrollbar-thumb,
+.dash-main .card::-webkit-scrollbar-thumb { background: var(--purple-light); border-radius: 8px; }
+
+.dash-main table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.dash-main table th:first-child,
+.dash-main table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: white;
+  box-shadow: 2px 0 6px rgba(59, 16, 87, 0.08);
+}
+.dash-main table thead th:first-child { z-index: 3; background: var(--pink-soft); }
+.dash-main table tbody tr:nth-child(even) td:first-child { background: #fdfaff; }
+.dash-main table tbody tr:hover td:first-child { background: #fbf4fb; }
+
+/* Kidokezo kidogo cha "sogeza kuona zaidi" - kinaonekana tu kwenye simu
+   ambapo jedwali huwa pana kuliko skrini. */
+.scroll-hint {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--purple);
+  background: var(--pink-soft);
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin: -4px 0 12px;
+  width: fit-content;
+}
+@media (max-width: 640px) {
+  .scroll-hint { display: inline-flex; }
+}
+
+/* ---------- Stat cards (count-up) ---------- */
+.stat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 24px; }
+@media (min-width: 760px) { .stat-grid { grid-template-columns: repeat(4,1fr); } }
+.stat-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--gold);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(59,16,87,0.16); }
+.stat-card .stat-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  background: linear-gradient(135deg, var(--pink-soft), var(--pink));
+}
+.stat-card .value { font-size: 1.5rem; font-weight: 800; color: var(--purple-deep); font-family: "Playfair Display", serif; line-height: 1.2; }
+.stat-card .label { color: var(--text-muted); font-size: 0.82rem; margin-top: 4px; }
+
+/* Simple bar chart (CSS-only) */
+.bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 160px; padding-top: 10px; }
+.bar-chart .bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--purple-light), var(--purple));
+  border-radius: 6px 6px 0 0;
+  min-height: 3px;
+  transition: height 500ms ease;
+  position: relative;
+}
+.bar-chart .bar .amt {
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  font-size: 0.62rem; color: var(--text-muted); white-space: nowrap;
+}
+
+/* Loyalty card */
+.loyalty-card {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--purple-deep);
+  border-radius: var(--radius);
+  padding: 18px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Utility */
+.flex { display: flex; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.wrap { flex-wrap: wrap; }
+.center { text-align: center; }
+.muted { color: var(--text-muted); }
+.mt-8 { margin-top: 8px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; }
+.mb-8 { margin-bottom: 8px; } .mb-16 { margin-bottom: 16px; }
+.small { font-size: 0.82rem; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; }
+.pill-on { background: #e4f5ea; color: var(--success); }
+.pill-off { background: #f5e4e4; color: var(--danger); }
+
+/* ---------- Modern touches (Vite / HeroUI inspired, CSS-only) ---------- */
+.gradient-text {
+  background: linear-gradient(135deg, var(--purple), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+/* Subtle glow ring on card hover, layered on top of the existing lift/shadow */
+.card { position: relative; }
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(91, 31, 138, 0);
+  transition: box-shadow var(--transition);
+  pointer-events: none;
+}
+.card:hover::after { box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25); }
+
+/* ---------- Trust badge strip (below header) ---------- */
+.trust-strip {
+  background: var(--purple-deep);
+  color: var(--pink-soft);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.trust-strip-track {
+  display: inline-flex;
+  gap: 40px;
+  padding: 8px 0;
+  animation: trustScroll 18s linear infinite;
+}
+.trust-strip-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+@keyframes trustScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Category icons row ---------- */
+.category-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.category-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 6px;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--purple-deep);
+}
+.category-item:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(59,16,87,0.16); }
+.category-item .icon-circle {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-soft), var(--pink));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+
+/* ---------- Floating social sidebar (elea = floats while scrolling) ---------- */
+.floating-social {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 60;
+}
+.floating-social a {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  box-shadow: 0 6px 16px rgba(59,16,87,0.25);
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: floatBob 3s ease-in-out infinite;
+}
+.floating-social a:nth-child(2) { animation-delay: 0.4s; }
+.floating-social a:nth-child(3) { animation-delay: 0.8s; }
+.floating-social a:hover { transform: scale(1.12); box-shadow: 0 10px 22px rgba(59,16,87,0.35); }
+.floating-social .fs-whatsapp { background: #25d366; }
+.floating-social .fs-instagram { background: radial-gradient(circle at 30% 110%, #fdf497, #fd5949 30%, #d6249f 60%, #285AEB); }
+.floating-social .fs-tiktok { background: #010101; }
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@media (max-width: 640px) {
+  .floating-social { right: 10px; gap: 8px; }
+  .floating-social a { width: 40px; height: 40px; }
+}
+
+/* Sehemu ya "Wasiliana Nasi" (LocationButtons: Bolt/Google Maps) inapoonekana
+   ndani ya footer ya zambarau ya kina - .btn-outline na maandishi "muted"
+   ya kawaida yamekusudiwa background nyeupe, hivyo hayaonekani vizuri hapa.
+   Override hii inarudisha usomekaji bila kugusa LocationButtons.js yenyewe
+   (component ile ile inatumika kwenye ukurasa mweupe wa /mawasiliano). */
+.footer-location-buttons p.muted { color: var(--pink-soft); opacity: 0.75; }
+.footer-location-buttons .btn-outline {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: var(--pink-soft);
+}
+.footer-location-buttons .btn-outline:hover { background: rgba(255, 255, 255, 0.1); }
+.footer-location-buttons .btn-primary { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+
+/* Ufikivu (a11y): mtu anayetumia kibodi/screen reader aone wazi kitu
+   gani kimechaguliwa - bila kubadilisha muonekano kwa mtumiaji wa mouse/kugusa. */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.icon-btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Heshimu mpangilio wa mtumiaji anayechagua "punguza mwendo" (motion
+   sensitivity / low-power devices). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===========================================================================
+   MUONEKANO MPYA WA "PREMIUM" — kwa mtindo wa tovuti za teknolojia za hali ya
+   juu (glass cards, glow za gradient, background zenye "mwanga" kama
+   deluxhost.net) lakini kwa rangi za chapa ya Pendo Stylish (zambarau+dhahabu).
+   Hakuna className/selector ya zamani iliyoondolewa - haya ni MAREKEBISHO
+   na NYONGEZA tu, ili kusiwe na error popote kwenye tovuti.
+   =========================================================================== */
+
+:root {
+  /* Rangi mpya za nyongeza (bado tunatumia --purple/--gold/n.k. za awali kila mahali) */
+  --violet: #7c3aed;
+  --violet-deep: #4c1d95;
+  --magenta: #c026d3;
+  --admin-bg-1: #150a24;
+  --admin-bg-2: #241142;
+  --admin-bg-3: #2f1256;
+  --admin-surface: rgba(255, 255, 255, 0.045);
+  --admin-surface-hover: rgba(255, 255, 255, 0.09);
+  --admin-border: rgba(255, 255, 255, 0.1);
+  --admin-text: #f3ecff;
+  --admin-text-muted: #bba9d9;
+  --success-onDark: #4ade80;
+  --danger-onDark: #f87171;
+  --glow-purple: 0 0 0 1px rgba(124, 58, 237, 0.35), 0 10px 34px rgba(124, 58, 237, 0.28);
+  --glow-gold: 0 0 0 1px rgba(212, 175, 55, 0.4), 0 10px 30px rgba(212, 175, 55, 0.22);
+}
+
+/* ---------- A. FRONT: mguso wa "tech premium" bila kubadili chapa ---------- */
+
+/* Mstari mwembamba wenye gradient chini ya header - kama tovuti za VPS/hosting */
+.site-header { border-bottom: none; box-shadow: 0 1px 0 0 rgba(91,31,138,0.08); position: sticky; }
+.site-header::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--violet), var(--gold));
+  background-size: 200% auto;
+  animation: shimmerLine 6s linear infinite;
+  opacity: 0.7;
+}
+@keyframes shimmerLine { to { background-position: -200% center; } }
+
+/* Hero na promo-hero: ongeza "grid pattern" nyororo ya kidijitali nyuma ya
+   maudhui (kama background ya deluxhost) juu ya orbs zilizopo tayari. */
+.hero::before,
+.promo-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero::before { opacity: 0.5; }
+.promo-hero { background: linear-gradient(160deg, var(--purple-deep) 0%, var(--purple) 45%, var(--violet) 75%, var(--magenta) 100%); }
+.promo-badge {
+  background: rgba(255,255,255,0.1);
+  box-shadow: var(--glow-gold);
+}
+
+/* Vitufe: glow ya kifahari kwenye hover, kama button za "Order now" za tovuti za hosting */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary:hover { box-shadow: var(--glow-purple); transform: translateY(-1px); }
+.btn-gold:hover { box-shadow: var(--glow-gold); transform: translateY(-1px); }
+.btn-dark-pill { box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+.btn-dark-pill:hover { box-shadow: 0 14px 36px rgba(212,175,55,0.35); }
+
+/* Kadi za bidhaa/kategoria: glow ya "glass" imara zaidi */
+.category-tile:hover, .category-item:hover {
+  box-shadow: var(--glow-gold);
+}
+.card:hover::after { box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.28), var(--glow-gold); }
+
+/* Sehemu ya "loyalty-card" na footer - mguso wa mwanga wa gradient */
+.loyalty-card { box-shadow: var(--glow-gold); }
+.site-footer { position: relative; }
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--violet), var(--magenta), var(--gold));
+}
+
+/* ---------- B. DASHIBODI/ADMIN: muonekano mpya wa "control panel" ya kifahari
+   (dark + glass + glow) - kama paneli za VPS/hosting za kisasa. Kila kitu
+   kimewekewa scope ndani ya .dash-shell / .dash-main ili tovuti ya mbele
+   (frontend) ibaki na muonekano wake wa awali. ---------- */
+
+.dash-shell {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(124,58,237,0.25), transparent 45%),
+    radial-gradient(circle at 100% 20%, rgba(212,175,55,0.14), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(192,38,211,0.12), transparent 45%),
+    linear-gradient(160deg, var(--admin-bg-1) 0%, var(--admin-bg-2) 55%, var(--admin-bg-3) 100%);
+  background-attachment: fixed;
+}
+.dash-main { color: var(--admin-text); }
+.dash-main h1, .dash-main h2, .dash-main h3, .dash-main h4 { color: #ffffff; font-family: "Playfair Display", serif; }
+.dash-main h2 { background: linear-gradient(135deg, #ffffff, var(--gold-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dash-main .muted, .dash-main p.muted, .dash-main .small.muted { color: var(--admin-text-muted); }
+.dash-main label { color: var(--gold-light); }
+.dash-main input, .dash-main textarea, .dash-main select { color: var(--text-dark); }
+.dash-main a { color: var(--gold-light); }
+.dash-main td a, .dash-main .card a { color: var(--gold-light) !important; }
+/* Marekebisho ya rangi zilizowekwa "inline" kwenye baadhi ya kurasa (mf.
+   ripoti/page.js) ili ziendelee kusomeka vizuri juu ya background nyeusi mpya. */
+.dash-main [style*="--success"] { color: var(--success-onDark) !important; }
+.dash-main [style*="--danger"] { color: var(--danger-onDark) !important; }
+
+/* Kadi ndani ya dashibodi (fomu, muhtasari, ripoti n.k.) - "glass card" */
+.dash-main .card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.35);
+}
+.dash-main .card:hover { transform: none; }
+.dash-main .card::after { display: none; }
+
+/* Stat cards - glass yenye "glow" ya icon */
+.dash-main .stat-card {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-top: 3px solid var(--gold);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.dash-main .stat-card:hover { box-shadow: var(--glow-purple); }
+.dash-main .stat-card .stat-icon {
+  background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(212,175,55,0.28));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+.dash-main .stat-card .value { color: #ffffff; }
+.dash-main .stat-card .label { color: var(--admin-text-muted); }
+
+/* Loyalty/alert-style blocks ndani ya dash zibaki kama zilivyo (self-contained) */
+
+/* Sidebar: gradient ya kina zaidi + active state yenye "glow" ya dhahabu */
+.dash-sidebar {
+  background: linear-gradient(195deg, var(--admin-bg-1) 0%, var(--purple-deep) 60%, var(--violet-deep) 130%);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.dash-sidebar a.active {
+  background: linear-gradient(135deg, rgba(212,175,55,0.22), rgba(124,58,237,0.22));
+  box-shadow: inset 0 0 0 1px rgba(212,175,55,0.35);
+  color: var(--gold-light);
+  font-weight: 700;
+}
+.dash-sidebar a:hover { background: rgba(255,255,255,0.08); }
+.dash-sidebar-toggle { box-shadow: var(--glow-purple); }
+
+/* Jedwali za desktop ndani ya dashibodi - mwonekano wa "data panel" ya kisasa */
+.dash-main table { background: transparent; }
+.dash-main th {
+  background: linear-gradient(135deg, rgba(124,58,237,0.28), rgba(192,38,211,0.16));
+  color: var(--gold-light);
+  border-bottom: 1px solid var(--admin-border);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+}
+.dash-main td { color: var(--admin-text); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.dash-main tbody tr:hover { background: rgba(255,255,255,0.05); }
+.dash-main tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+.dash-main tbody tr:nth-child(even):hover { background: rgba(255,255,255,0.06); }
+.dash-main table th:first-child,
+.dash-main table td:first-child { background: #1c0f34 !important; box-shadow: 2px 0 8px rgba(0,0,0,0.35); }
+.dash-main table thead th:first-child { background: #2a1550 !important; }
+.scroll-hint { background: rgba(255,255,255,0.08); color: var(--gold-light); }
+
+/* ---------- C. DASHIBODI: majedwali kuwa "kadi" za kisasa kwenye simu ----------
+   Badala ya jedwali refu linaloweza kuhitaji ku-scroll kando kwenye simu,
+   kila safu (tr) sasa inaonekana kama kadi tofauti - jina la column
+   linaonekana kama "lebo" ndogo mbele ya thamani yake (bila kuhitaji
+   kubadilisha JSX - lebo zinatolewa hapa kwa CSS pekee kulingana na
+   mpangilio wa column za kila jedwali). Desktop/tablet (>640px) hazibadiliki -
+   zinaonekana kama jedwali la kawaida lililoboreshwa hapo juu. */
+@media (max-width: 640px) {
+  .dash-main table.tbl-cards { width: 100% !important; min-width: 0 !important; border-collapse: separate; border-spacing: 0 12px; }
+  .dash-main .tbl-cards thead { display: none; }
+  .dash-main .tbl-cards tbody tr {
+    display: flex;
+    flex-direction: column;
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-left: 3px solid var(--gold);
+    border-radius: 14px;
+    padding: 12px 14px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+  }
+  .dash-main .tbl-cards tbody tr:hover,
+  .dash-main .tbl-cards tbody tr:nth-child(even),
+  .dash-main .tbl-cards tbody tr:nth-child(even):hover { background: var(--admin-surface); }
+  .dash-main .tbl-cards td,
+  .dash-main .tbl-cards th {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: right;
+    gap: 12px;
+    padding: 7px 0 !important;
+    border-bottom: 1px dashed rgba(255,255,255,0.1) !important;
+    white-space: normal !important;
+    position: static !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .dash-main .tbl-cards td:last-child { border-bottom: none !important; }
+  .dash-main .tbl-cards td::before {
+    content: "";
+    font-weight: 700;
+    color: var(--gold-light);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-align: left;
+    flex-shrink: 0;
+  }
+  /* Safu zenye picha (avatar/thumbnail) - katikati, bila lebo */
+  .dash-main .tbl-cards td:has(img) { justify-content: center; padding-bottom: 10px !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; margin-bottom: 4px; }
+  .dash-main .tbl-cards td:has(img)::before { content: none; }
+  /* Safu za vitendo (vitufe kama Hariri/Futa/Fungua) - katikati chini ya kadi, bila lebo */
+  .dash-main .tbl-cards td:has(> button) { justify-content: center; flex-wrap: wrap; padding-top: 10px !important; }
+  .dash-main .tbl-cards td:has(> button)::before { content: none; }
+  /* Safu ya "hakuna data bado" (colSpan) - katikati, bila lebo */
+  .dash-main .tbl-cards td[colspan] { justify-content: center; text-align: center; }
+  .dash-main .tbl-cards td[colspan]::before { content: none; }
+
+  /* Lebo za kila column, kulingana na mpangilio wake katika kila jedwali */
+  .tbl-history td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-history td:nth-of-type(2)::before { content: "Kitu"; }
+  .tbl-history td:nth-of-type(3)::before { content: "Mapato"; }
+  .tbl-history td:nth-of-type(4)::before { content: "Matumizi"; }
+  .tbl-history td:nth-of-type(5)::before { content: "Faida"; }
+
+  .tbl-history-staff td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-history-staff td:nth-of-type(2)::before { content: "Kitu"; }
+  .tbl-history-staff td:nth-of-type(3)::before { content: "Aliyefanya"; }
+  .tbl-history-staff td:nth-of-type(4)::before { content: "Mapato"; }
+  .tbl-history-staff td:nth-of-type(5)::before { content: "Matumizi"; }
+  .tbl-history-staff td:nth-of-type(6)::before { content: "Faida"; }
+
+  .tbl-staff td:nth-of-type(2)::before { content: "Jina"; }
+  .tbl-staff td:nth-of-type(3)::before { content: "Aina"; }
+  .tbl-staff td:nth-of-type(4)::before { content: "Ujuzi"; }
+  .tbl-staff td:nth-of-type(5)::before { content: "Hali"; }
+  .tbl-staff td:has(img) img { border-radius: 50% !important; }
+
+  .tbl-products td:nth-of-type(2)::before { content: "Jina"; }
+  .tbl-products td:nth-of-type(3)::before { content: "Bei"; }
+  .tbl-products td:nth-of-type(4)::before { content: "Hali"; }
+
+  .tbl-locks td:nth-of-type(1)::before { content: "Kipindi"; }
+  .tbl-locks td:nth-of-type(2)::before { content: "Aina"; }
+  .tbl-locks td:nth-of-type(3)::before { content: "Alifunga"; }
+
+  .tbl-sales-log td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-sales-log td:nth-of-type(2)::before { content: "Aliyefanya"; }
+  .tbl-sales-log td:nth-of-type(3)::before { content: "Kitu"; }
+  .tbl-sales-log td:nth-of-type(4)::before { content: "Mapato"; }
+  .tbl-sales-log td:nth-of-type(5)::before { content: "Matumizi"; }
+  .tbl-sales-log td:nth-of-type(6)::before { content: "Faida"; }
+  .tbl-sales-log td:nth-of-type(7)::before { content: "Aliyeingiza"; }
+
+  .tbl-expenses td:nth-of-type(1)::before { content: "Tarehe"; }
+  .tbl-expenses td:nth-of-type(2)::before { content: "Aina"; }
+  .tbl-expenses td:nth-of-type(3)::before { content: "Maelezo"; }
+  .tbl-expenses td:nth-of-type(4)::before { content: "Kiasi"; }
+
+  .tbl-services td:nth-of-type(1)::before { content: "Jina"; }
+  .tbl-services td:nth-of-type(2)::before { content: "Bei"; }
+  .tbl-services td:nth-of-type(3)::before { content: "Hali"; }
+
+  .tbl-audit td:nth-of-type(1)::before { content: "Tarehe/Muda"; }
+  .tbl-audit td:nth-of-type(2)::before { content: "Mtumiaji"; }
+  .tbl-audit td:nth-of-type(3)::before { content: "Kitendo"; }
+  .tbl-audit td:nth-of-type(4)::before { content: "Kipengele"; }
+  .tbl-audit td:nth-of-type(5)::before { content: "IP"; }
+
+  .tbl-staff-summary td:nth-of-type(1)::before { content: "Mfanyakazi"; }
+  .tbl-staff-summary td:nth-of-type(2)::before { content: "Idadi"; }
+  .tbl-staff-summary td:nth-of-type(3)::before { content: "Mapato"; }
+  .tbl-staff-summary td:nth-of-type(4)::before { content: "Faida"; }
+
+  /* Jedwali fupi la "ledger" (mf. Ripoti P&L) - tayari lina column 2 tu
+     (maelezo + kiasi), hivyo linabaki kama "orodha" nzuri bila lebo za ziada. */
+  .dash-main .card table:not(.tbl-cards) tr { display: flex; justify-content: space-between; gap: 10px; }
+  .dash-main .card table:not(.tbl-cards) td { border-bottom: 1px dashed rgba(255,255,255,0.1); }
+}
