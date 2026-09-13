@@ -5,6 +5,7 @@ import { requireUser } from "@/lib/auth";
 import { logAudit, getClientIp } from "@/lib/audit";
 import { isValidUuid, toCleanString, toMoney, ValidationError, parseJsonBody } from "@/lib/validators";
 import { touchLoyalty } from "@/lib/loyalty";
+import { isSaleDateLocked, SALE_LOCK_MESSAGE } from "@/lib/saleLocks";
 
 export async function GET(req) {
   const auth = await requireUser(["admin", "staff"]);
@@ -83,11 +84,17 @@ export async function POST(req) {
     const cost = toMoney(body.cost, { fieldName: "Matumizi", required: false });
     const customer_name = toCleanString(body.customer_name, { maxLen: 150 });
     const notes = toCleanString(body.notes, { maxLen: 1000 });
-    const sale_date = body.sale_date ? toCleanString(body.sale_date, { maxLen: 10 }) : null;
+    const sale_date = body.sale_date
+      ? toCleanString(body.sale_date, { maxLen: 10 })
+      : new Date().toISOString().slice(0, 10);
+
+    if (auth.user.role === "staff" && (await isSaleDateLocked(sale_date))) {
+      throw new ValidationError(SALE_LOCK_MESSAGE);
+    }
 
     const { rows } = await query(
       `INSERT INTO sales (item_type, item_name, service_detail, staff_id, customer_name, revenue, cost, entered_by, notes, sale_date)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9, COALESCE($10, CURRENT_DATE))
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
        RETURNING *`,
       [item_type, item_name, service_detail, staff_id, customer_name, revenue, cost, auth.user.id, notes, sale_date]
     );

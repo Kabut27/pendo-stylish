@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { query } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
 import { logAudit, getClientIp } from "@/lib/audit";
+import { isSaleDateLocked, SALE_LOCK_MESSAGE } from "@/lib/saleLocks";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const validId = (id) => typeof id === "string" && UUID_RE.test(id);
@@ -24,6 +25,9 @@ export async function PUT(req, { params }) {
 
   if (auth.user.role === "staff" && !staffCanTouch(auth.user, existing)) {
     return NextResponse.json({ error: "Huruhusiwi kuhariri mauzo haya." }, { status: 403 });
+  }
+  if (auth.user.role === "staff" && (await isSaleDateLocked(existing.sale_date))) {
+    return NextResponse.json({ error: SALE_LOCK_MESSAGE }, { status: 403 });
   }
 
   let body;
@@ -71,6 +75,9 @@ export async function DELETE(req, { params }) {
 
   if (auth.user.role === "staff" && !staffCanTouch(auth.user, existing)) {
     return NextResponse.json({ error: "Huruhusiwi kufuta mauzo haya." }, { status: 403 });
+  }
+  if (auth.user.role === "staff" && (await isSaleDateLocked(existing.sale_date))) {
+    return NextResponse.json({ error: SALE_LOCK_MESSAGE }, { status: 403 });
   }
 
   await query(`DELETE FROM sales WHERE id = $1`, [params.id]);

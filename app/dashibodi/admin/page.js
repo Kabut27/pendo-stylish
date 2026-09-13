@@ -7,6 +7,7 @@ const PERIODS = [
   { key: "today", label: "Leo" },
   { key: "week", label: "Wiki" },
   { key: "month", label: "Mwezi" },
+  { key: "year", label: "Mwaka" },
 ];
 
 export default function AdminOverviewPage() {

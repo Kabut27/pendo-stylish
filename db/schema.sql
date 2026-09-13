@@ -95,6 +95,24 @@ CREATE INDEX IF NOT EXISTS idx_sales_staff_date ON sales(staff_id, sale_date);
 CREATE INDEX IF NOT EXISTS idx_sales_date ON sales(sale_date);
 
 -- ------------------------------------------------------------
+-- KUFUNGA MAUZO (period locks) — Admin anaweza "kufunga" siku au
+-- mwezi mzima wa mauzo. Baada ya kufungwa, MFANYAKAZI hawezi tena
+-- kuhariri au kufuta mauzo ya kipindi hicho (Admin bado anaweza,
+-- na anaweza "kufungua" tena akihitaji). Uthibitisho wa hii
+-- unafanyika upande wa SERVER kwenye app/api/sales - si UI tu.
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS sale_locks (
+    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    lock_type       VARCHAR(10) NOT NULL CHECK (lock_type IN ('day', 'month')),
+    period_value    VARCHAR(10) NOT NULL,   -- 'YYYY-MM-DD' kwa siku, 'YYYY-MM' kwa mwezi
+    locked_by       UUID REFERENCES users(id),
+    locked_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+    UNIQUE (lock_type, period_value)
+);
+
+CREATE INDEX IF NOT EXISTS idx_sale_locks_period ON sale_locks(period_value);
+
+-- ------------------------------------------------------------
 -- MATUMIZI YA BIASHARA (P&L ya jumla ya mmiliki)
 -- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS business_expenses (

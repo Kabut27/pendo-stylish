@@ -12,6 +12,10 @@ function periodToStartDate(period) {
     const d = new Date(now.getFullYear(), now.getMonth(), 1);
     return d.toISOString().slice(0, 10);
   }
+  if (period === "year") {
+    const d = new Date(now.getFullYear(), 0, 1);
+    return d.toISOString().slice(0, 10);
+  }
   // wiki (week) - siku 7 zilizopita ikiwemo leo
   const d = new Date(now);
   d.setDate(d.getDate() - 6);
@@ -23,7 +27,7 @@ export async function GET(req) {
   if (auth.error) return NextResponse.json({ error: auth.error }, { status: auth.status });
 
   const { searchParams } = new URL(req.url);
-  const period = ["today", "week", "month"].includes(searchParams.get("period"))
+  const period = ["today", "week", "month", "year"].includes(searchParams.get("period"))
     ? searchParams.get("period")
     : "week";
   const startDate = periodToStartDate(period);
