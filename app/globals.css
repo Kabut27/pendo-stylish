@@ -819,6 +819,18 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--p
 .dash-sidebar a:hover, .dash-sidebar a.active { background: rgba(255,255,255,0.1); }
 .dash-main { padding: 70px 16px 22px; max-width: 100%; overflow-x: auto; min-width: 0; }
 
+/* Marekebisho: kwenye simu ndogo, "table { width: 100% }" (chini) inalazimisha
+   jedwali lisizidi upana wa skrini - safu za mwisho (kama kitufe "Ona Orodha")
+   zinabanwa/kukatika badala ya kupatikana kwa ku-scroll. .dash-main tayari ina
+   overflow-x:auto - hii inampa jedwali "sababu" ya kuzidi upana wa skrini
+   ili scroll ianze kufanya kazi, badala ya kubana column zote. Inagusa
+   majedwali YOTE ya dashibodi (mauzo, wafanyakazi, bidhaa, ripoti, n.k.)
+   kwa mabadiliko haya moja tu. */
+@media (max-width: 640px) {
+  .dash-main table { width: auto; min-width: 600px; }
+  .dash-main th, .dash-main td { white-space: nowrap; }
+}
+
 /* ---------- Table ---------- */
 table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; }
 th, td { padding: 10px 12px; text-align: left; font-size: 0.88rem; border-bottom: 1px solid #f1e7f4; }
